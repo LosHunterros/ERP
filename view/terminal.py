@@ -13,7 +13,7 @@ def print_menu(title, list_options):
     """
     print(f"{title.upper()}\n")
     for i, option in enumerate(list_options):
-        print(f"({i+1}) {option}")
+        print(f"({i}) {option}")
 
 
 def print_message(message):
