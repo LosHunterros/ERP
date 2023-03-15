@@ -11,7 +11,9 @@ def print_menu(title, list_options):
         title (str): the title of the menu (first row)
         list_options (list): list of the menu options (listed starting from 1, 0th element goes to the end)
     """
-    pass
+    print(f"{title.upper()}\n")
+    for i, option in enumerate(list_options):
+        print(f"({i+1}) {option}")
 
 
 def print_message(message):
