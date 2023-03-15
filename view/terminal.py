@@ -22,7 +22,7 @@ def print_message(message):
     Args:
         message: str - the message
     """
-    pass
+    print(f"\nMessage: {message}\n")
 
 
 def print_general_results(result, label):
