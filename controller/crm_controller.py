@@ -3,7 +3,8 @@ from view import terminal as view
 
 
 def list_customers():
-    view.print_error_message("Not implemented yet.")
+    customers = crm.get_customers()
+    view.print_table(customers)
 
 
 def add_customer():
