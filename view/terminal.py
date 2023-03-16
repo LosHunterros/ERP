@@ -11,7 +11,7 @@ def print_menu(title, list_options):
         title (str): the title of the menu (first row)
         list_options (list): list of the menu options (listed starting from 1, 0th element goes to the end)
     """
-    print(f"{title.upper()}\n")
+    print(f"\n{title.upper()}\n")
     for i, option in enumerate(list_options):
         print(f"({i}) {option}")
 
@@ -22,7 +22,7 @@ def print_message(message):
     Args:
         message: str - the message
     """
-    print(f"\nMessage: {message}\n")
+    print(f"\nMessage: {message}")
 
 
 def print_general_results(result, label):
@@ -47,7 +47,15 @@ def print_table(table):
     Args:
         table: list of lists - the table to print out
     """
-    pass
+    first_line = True
+    print("\n/---------------------------------------------------------------------------------------------------------------\\")
+    for row in table:
+        if not first_line: print("|---------------------------------------------------------------------------------------------------------------|")
+        for col in row:
+            print(f"| {col.ljust(30)} ", end="")
+        print("|")
+        first_line = False
+    print("\\---------------------------------------------------------------------------------------------------------------/")
 
 
 def get_input(label):
