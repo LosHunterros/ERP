@@ -18,3 +18,9 @@ def get_customers(file = DATAFILE):
     users.append(HEADERS)
     users += data_manager.read_table_from_file(file)
     return users
+
+def add_customer(customer, file = DATAFILE):
+    customer["id"] = util.generate_id()
+    customer["subscribtion"] = util.convert_to_boolean(customer["subscribtion"])
+    customer = [customer["id"], customer["name"], customer["email"], customer["subscribtion"]]
+    return data_manager.append_line_to_file(file, customer)

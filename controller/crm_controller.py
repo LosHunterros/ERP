@@ -8,7 +8,11 @@ def list_customers():
 
 
 def add_customer():
-    view.print_error_message("Not implemented yet.")
+    customer_data = get_new_customer_data()
+    customer_name = customer_data["name"]
+    customer_email = customer_data["email"]
+    customer_subscribtion = customer_data["subscribtion"]
+    crm.add_customer({"name": customer_name, "email": customer_email, "subscribtion": customer_subscribtion})
 
 
 def update_customer():
@@ -21,6 +25,13 @@ def delete_customer():
 
 def get_subscribed_emails():
     view.print_error_message("Not implemented yet.")
+
+
+def get_new_customer_data():
+    customer_name = view.get_input("New customers name")
+    customer_email = view.get_input("New customers email")
+    customer_subscribtion = view.get_input("New customers email subscribtion (Y - Yes ; N - No)")
+    return {"name": customer_name, "email": customer_email, "subscribtion": customer_subscribtion}
 
 
 def run_operation(option):

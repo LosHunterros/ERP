@@ -27,7 +27,28 @@ def write_table_to_file(file_name, table, separator=';'):
         table: list of lists containing tabular data.
         separator: The CSV separator character
     """
-    with open(file_name, "w") as file:
-        for record in table:
-            row = separator.join(record)
-            file.write(row + "\n")
+    try:
+        with open(file_name, "w") as file:
+            for record in table:
+                row = separator.join(record)
+                file.write(row + "\n")
+                return True
+    except IOError:
+        return False
+
+
+def append_line_to_file(file_name, data, separator=';'):
+    """Add one line of data into a CSV file.
+
+    Args:
+        file_name: The name of the file to write to.
+        data: lists containing tabular data.
+        separator: The CSV separator character
+    """
+    try:
+        with open(file_name, "a") as file:
+            data = separator.join(data)
+            file.write("\n" + data)
+            return True
+    except IOError:
+        return False
