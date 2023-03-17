@@ -58,13 +58,20 @@ def print_table(table):
     print("\\-----------------------------------------------------------------------------------------------------------------------------------/")
 
 
-def get_input(label):
+def get_input(label, validate=False):
     """Gets single string input from the user.
 
     Args:
         label: str - the label before the user prompt
     """
-    return input(f"\n{label}: ")
+    user_input = False
+
+    while not user_input:
+        user_input = input(f"\n{label}: ")
+        if validate: user_input = validate(user_input)
+        if not user_input: print_error_message(f"{label}. Please try again")
+
+    return user_input
 
 
 def get_inputs(labels):
