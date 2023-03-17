@@ -1,4 +1,5 @@
 from model.crm import crm
+from model import util
 from view import terminal as view
 
 
@@ -12,7 +13,10 @@ def add_customer():
     customer_name = customer_data["name"]
     customer_email = customer_data["email"]
     customer_subscribtion = customer_data["subscribtion"]
-    crm.add_customer({"name": customer_name, "email": customer_email, "subscribtion": customer_subscribtion})
+    if crm.add_customer({"name": customer_name, "email": customer_email, "subscribtion": customer_subscribtion}):
+        view.print_message("Customer added successfully")
+    else:
+        view.print_error_message("User not added")
 
 
 def update_customer():
@@ -28,9 +32,25 @@ def get_subscribed_emails():
 
 
 def get_new_customer_data():
-    customer_name = view.get_input("New customers name")
-    customer_email = view.get_input("New customers email")
-    customer_subscribtion = view.get_input("New customers email subscribtion (Y - Yes ; N - No)")
+    customer_name = False
+    customer_email = False
+    customer_subscribtion = False
+
+    while not customer_name:
+        customer_name = view.get_input("New customers name")
+        customer_name = util.validate_text(customer_name)
+        if not customer_name: view.print_error_message("Wrong customer name, try again")
+
+    while not customer_email:
+        customer_email = view.get_input("New customers email")
+        customer_email = util.validate_email(customer_email)
+        if not customer_email: view.print_error_message("Wrong customer email, try again")
+
+    while not customer_subscribtion:
+        customer_subscribtion = view.get_input("New customers email subscribtion (Y - Yes ; N - No)")
+        customer_subscribtion = util.validate_boolean(customer_subscribtion)
+        if not customer_subscribtion: view.print_error_message("Wrong customer email subscribtion, try again")
+
     return {"name": customer_name, "email": customer_email, "subscribtion": customer_subscribtion}
 
 

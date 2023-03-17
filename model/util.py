@@ -31,7 +31,55 @@ def generate_id(number_of_small_letters=4,
 
     return "".join(id)
 
+
 def convert_to_boolean(data):
-    if data == "Y": return "1"
-    elif data == "N": return "0"
+    if data == "y": return "1"
+    elif data == "n": return "0"
     else: return False
+
+
+def validate_text(text):
+    if len(text) < 1 or len(text) > 30: return False
+    return text
+
+
+def validate_email(email):
+    try:
+        email_splitted = email.split("@")
+        email_user = email_splitted[0]
+        email_user_splitted = email_user.split(".")
+        email_domain = email_splitted[1]
+        email_domain_splitted = email_domain.split(".")
+
+        accepted_chars = string.ascii_lowercase + string.ascii_uppercase + string.digits + "-" + "."
+
+        if len(email) < 1 or len(email) > 30: return False
+        if len(email_splitted) != 2: return False
+
+        if len(email_domain_splitted) < 2: return False
+        if len(email_domain_splitted[-1]) < 2: return False
+
+        for char in email_user:
+            if char not in accepted_chars: return False
+        for char in email_domain:
+            if char not in accepted_chars: return False
+
+        for fragment in email_domain_splitted:
+            if fragment[0] == "-": return False
+            if fragment[-1] == "-": return False
+
+        for fragment in email_user_splitted:
+            if fragment[0] == "-": return False
+            if fragment[-1] == "-": return False
+
+        if ".." in email: return False
+
+    except:
+        return False
+
+    return email
+
+
+def validate_boolean(text):
+    if text.lower() != "y" and text.lower() != "n": return False
+    return text.lower()

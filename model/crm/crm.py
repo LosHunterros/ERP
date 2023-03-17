@@ -22,5 +22,6 @@ def get_customers(file = DATAFILE):
 def add_customer(customer, file = DATAFILE):
     customer["id"] = util.generate_id()
     customer["subscribtion"] = util.convert_to_boolean(customer["subscribtion"])
+    customer["email"] = customer["email"].lower()
     customer = [customer["id"], customer["name"], customer["email"], customer["subscribtion"]]
     return data_manager.append_line_to_file(file, customer)
