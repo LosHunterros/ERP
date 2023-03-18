@@ -44,6 +44,18 @@ def edit_customer(customer, file = DATAFILE):
     return data_manager.write_table_to_file(file, customers)
 
 
+def delete_customer(id, file = DATAFILE):
+    customers = get_customers()
+    del customers[0]
+
+    for i in range(len(customers)):
+        if customers[i][0] == id:
+            del customers[i]
+            break
+
+    return data_manager.write_table_to_file(file, customers)
+
+
 def validate_id(id):
     customers = get_customers()
     for customer in customers:

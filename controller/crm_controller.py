@@ -32,7 +32,11 @@ def update_customer():
 
 
 def delete_customer():
-    view.print_error_message("Not implemented yet.")
+    customer_id = view.get_input("Customer ID", crm.validate_id)
+    if crm.delete_customer(customer_id):
+        view.print_message("Customer deleted successfully")
+    else:
+        view.print_error_message("Customer not deleted")
 
 
 def get_subscribed_emails():
