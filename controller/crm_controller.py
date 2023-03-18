@@ -16,11 +16,19 @@ def add_customer():
     if crm.add_customer({"name": customer_name, "email": customer_email, "subscribtion": customer_subscribtion}):
         view.print_message("Customer added successfully")
     else:
-        view.print_error_message("User not added")
+        view.print_error_message("Customer not added")
 
 
 def update_customer():
-    view.print_error_message("Not implemented yet.")
+    customer_id = view.get_input("Customer ID", crm.validate_id)
+    customer_data = get_new_customer_data()
+    customer_name = customer_data["name"]
+    customer_email = customer_data["email"]
+    customer_subscribtion = customer_data["subscribtion"]
+    if crm.edit_customer({"id": customer_id, "name": customer_name, "email": customer_email, "subscribtion": customer_subscribtion}):
+        view.print_message("Customer edited successfully")
+    else:
+        view.print_error_message("Customer not edited")
 
 
 def delete_customer():
@@ -32,9 +40,9 @@ def get_subscribed_emails():
 
 
 def get_new_customer_data():
-    customer_name = view.get_input("Customers name", util.validate_text)
-    customer_email = view.get_input("Customers email", util.validate_email)
-    customer_subscribtion = view.get_input("Customers email subscribtion (Y - Yes ; N - No)", util.validate_boolean)
+    customer_name = view.get_input("Customer name", util.validate_text)
+    customer_email = view.get_input("Customer email", util.validate_email)
+    customer_subscribtion = view.get_input("Customer email subscribtion (Y - Yes ; N - No)", util.validate_boolean)
 
     return {"name": customer_name, "email": customer_email, "subscribtion": customer_subscribtion}
 
