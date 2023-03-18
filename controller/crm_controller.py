@@ -40,7 +40,8 @@ def delete_customer():
 
 
 def get_subscribed_emails():
-    view.print_error_message("Not implemented yet.")
+    emails = crm.get_subscribed_emails()
+    view.print_general_results(emails, "Subscribed customer emails")
 
 
 def get_new_customer_data():

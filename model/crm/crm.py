@@ -56,6 +56,15 @@ def delete_customer(id, file = DATAFILE):
     return data_manager.write_table_to_file(file, customers)
 
 
+def get_subscribed_emails(file = DATAFILE):
+    customers = get_customers()
+    customers = list(filter(lambda x: x[3] == "1", customers))
+    emails = []
+    for customer in customers:
+        emails.append(customer[2])
+    return emails
+
+
 def validate_id(id):
     customers = get_customers()
     for customer in customers:
