@@ -13,11 +13,12 @@ from model import data_manager, util
 DATAFILE = "model/crm/crm.csv"
 HEADERS = ["id", "name", "email", "subscribed"]
 
+
 def get_customers(file = DATAFILE):
-    users = []
-    users.append(HEADERS)
-    users += data_manager.read_table_from_file(file)
-    return users
+    customers = []
+    customers.append(HEADERS)
+    customers += data_manager.read_table_from_file(file)
+    return customers
 
 
 def add_customer(customer, file = DATAFILE):
